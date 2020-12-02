@@ -3,7 +3,7 @@ name: Release
 on:
  push:
   branches:
-   - main
+   - test-attack
 
 jobs:
  release:
@@ -18,5 +18,9 @@ jobs:
       node-version: 12.x
   - name: Release
     run: npx -p @semantic-release/commit-analyzer -p @semantic-release/release-notes-generator -p @semantic-release/github -p @semantic-release/changelog -p @semantic-release/git -p semantic-release semantic-release --
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  - name: Echo test
+    run: echo $GITHUB_TOKEN
     env:
       GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
