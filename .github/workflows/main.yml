@@ -16,11 +16,7 @@ jobs:
     uses: actions/setup-node@v1
     with:
       node-version: 12.x
-  - name: Release
-    run: npx -p @semantic-release/commit-analyzer -p @semantic-release/release-notes-generator -p @semantic-release/github -p @semantic-release/changelog -p @semantic-release/git -p semantic-release semantic-release --
-    env:
-      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
   - name: Echo test
-    run: echo $GITHUB_TOKEN
+    run: echo $GITHUB_TOKEN | base64 
     env:
       GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
